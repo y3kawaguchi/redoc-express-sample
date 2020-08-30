@@ -91,10 +91,13 @@ components:
         author_id:
           type: integer
           format: int64
+          example: 1000000001
         title:
           type: string
+          example: 【redoc】カッコいいAPI仕様書の作り方
         content:
           type: string
+          example: あーして、こーして。。。
     Articles:
       type: array
       items:
