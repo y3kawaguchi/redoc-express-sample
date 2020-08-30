@@ -1,0 +1,30 @@
+{
+  "name": "redoc-express-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf src",
+    "server": "cd src && npm run prestart && npm run start",
+    "validate": "openapi-generator validate -i ./spec/knowledge.yaml", 
+    "generate": "openapi-generator generate -g nodejs-express-server -i ./spec/knowledge.yaml -o ./src -t ./spec/template"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y3kawaguchi/redoc-express-sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/y3kawaguchi/redoc-express-sample/issues"
+  },
+  "homepage": "https://github.com/y3kawaguchi/redoc-express-sample#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "redoc-express": "^1.0.0"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^1.0.15-4.3.1"
+  }
+}
