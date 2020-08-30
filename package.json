@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf src",
     "server": "cd src && npm run prestart && npm run start",
-    "validate": "openapi-generator validate -i ./spec/knowledge.yaml", 
-    "generate": "openapi-generator generate -g nodejs-express-server -i ./spec/knowledge.yaml -o ./src -t ./spec/template"
+    "validate": "openapi-generator validate -i ./spec/knowledge.yaml",
+    "generate": "openapi-generator generate -g nodejs-express-server -i ./spec/knowledge.yaml -o ./src -t ./spec/template",
+    "create-doc": "redoc-cli bundle ./spec/knowledge.yaml"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,13 @@
     "redoc-express": "^1.0.0"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^1.0.15-4.3.1"
+    "@openapitools/openapi-generator-cli": "^1.0.15-4.3.1",
+    "core-js": "^3.6.5",
+    "mobx": "^4.15.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "redoc": "^2.0.0-rc.40",
+    "redoc-cli": "^0.9.12",
+    "styled-components": "^5.1.1"
   }
 }
