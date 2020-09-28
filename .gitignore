@@ -105,6 +105,3 @@ dist
 
 # Created by mac
 .DS_Store
-
-# Generated src
-src/

@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  license:
+    name: MIT
+  title: knowledge
+  version: 1.0.0
+servers:
+- url: http://localhost:3000/v1
+paths:
+  /articles:
+    get:
+      operationId: listArticles
+      parameters:
+      - description: How many items to return at one time (max 100)
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Articles'
+          description: A paged array of articles
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              explode: false
+              schema:
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: List all articles
+      tags:
+      - articles
+      x-eov-operation-handler: controllers/ArticlesController
+    post:
+      operationId: createArticles
+      responses:
+        "201":
+          description: Null response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Create a article
+      tags:
+      - articles
+      x-eov-operation-handler: controllers/ArticlesController
+  /articles/{articleId}:
+    get:
+      operationId: showArticleById
+      parameters:
+      - description: The id of the article to retrieve
+        explode: false
+        in: path
+        name: articleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: Expected response to a valid request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Info for a specific article
+      tags:
+      - articles
+      x-eov-operation-handler: controllers/ArticlesController
+components:
+  schemas:
+    Article:
+      example:
+        author_id: 1000000001
+        title: 【redoc】カッコいいAPI仕様書の作り方
+        content: あーして、こーして。。。
+      properties:
+        author_id:
+          example: 1000000001
+          format: int64
+          type: integer
+        title:
+          example: 【redoc】カッコいいAPI仕様書の作り方
+          type: string
+        content:
+          example: あーして、こーして。。。
+          type: string
+      required:
+      - author_id
+      - content
+      - title
+      type: object
+    Articles:
+      items:
+        $ref: '#/components/schemas/Article'
+      type: array
+    Error:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      required:
+      - code
+      - message
+      type: object
