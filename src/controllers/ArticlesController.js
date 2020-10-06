@@ -20,9 +20,14 @@ const showArticleById = async (request, response) => {
   await Controller.handleRequest(request, response, service.showArticleById);
 };
 
+const updateArticles = async (request, response) => {
+  await Controller.handleRequest(request, response, service.updateArticles);
+};
+
 
 module.exports = {
   createArticles,
   listArticles,
   showArticleById,
+  updateArticles,
 };

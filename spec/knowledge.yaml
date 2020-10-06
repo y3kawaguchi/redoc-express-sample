@@ -53,6 +53,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+    put:
+      summary: Update a article
+      operationId: updateArticles
+      tags:
+        - articles
+      responses:
+        '201':
+          description: ok
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /articles/{articleId}:
     get:
       summary: Info for a specific article

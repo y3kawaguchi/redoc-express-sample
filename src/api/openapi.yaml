@@ -59,6 +59,21 @@ paths:
       tags:
       - articles
       x-eov-operation-handler: controllers/ArticlesController
+    put:
+      operationId: updateArticles
+      responses:
+        "201":
+          description: ok
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Update a article
+      tags:
+      - articles
+      x-eov-operation-handler: controllers/ArticlesController
   /articles/{articleId}:
     get:
       operationId: showArticleById
